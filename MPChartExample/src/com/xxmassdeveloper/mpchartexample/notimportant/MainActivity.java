@@ -36,6 +36,7 @@ import com.xxmassdeveloper.mpchartexample.LineChartActivityColored;
 import com.xxmassdeveloper.mpchartexample.ListViewBarChartActivity;
 import com.xxmassdeveloper.mpchartexample.ListViewMultiChartActivity;
 import com.xxmassdeveloper.mpchartexample.MultiLineChartActivity;
+import com.xxmassdeveloper.mpchartexample.MyLineChartActivity;
 import com.xxmassdeveloper.mpchartexample.PerformanceLineChart;
 import com.xxmassdeveloper.mpchartexample.PieChartActivity;
 import com.xxmassdeveloper.mpchartexample.R;
@@ -118,6 +119,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
         objects.add(new ContentItem(
                 "Sinus Bar Chart",
                 "A Bar Chart plotting the sinus function with 8.000 values."));
+        objects.add(new ContentItem("MyLineChar","my_line_chart"));
 
         MyAdapter adapter = new MyAdapter(this, objects);
 
@@ -233,6 +235,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
                 break;
             case 23:
                 i = new Intent(this, BarChartActivitySinus.class);
+                startActivity(i);
+                break;
+            case 24:
+                i = new Intent(this, MyLineChartActivity.class);
                 startActivity(i);
                 break;
         }

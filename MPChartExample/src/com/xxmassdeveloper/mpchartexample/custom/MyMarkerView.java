@@ -2,6 +2,7 @@
 package com.xxmassdeveloper.mpchartexample.custom;
 
 import android.content.Context;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.components.MarkerView;
@@ -18,11 +19,13 @@ import com.xxmassdeveloper.mpchartexample.R;
 public class MyMarkerView extends MarkerView {
 
     private TextView tvContent;
+    private RelativeLayout rlMarker;
 
     public MyMarkerView(Context context, int layoutResource) {
         super(context, layoutResource);
 
         tvContent = (TextView) findViewById(R.id.tvContent);
+        rlMarker = (RelativeLayout) findViewById(R.id.rl_marker_view);
     }
 
     // callbacks everytime the MarkerView is redrawn, can be used to update the
@@ -34,10 +37,10 @@ public class MyMarkerView extends MarkerView {
 
             CandleEntry ce = (CandleEntry) e;
 
-            tvContent.setText("" + Utils.formatNumber(ce.getHigh(), 0, true));
+            tvContent.setText("This point's value is :" + Utils.formatNumber(ce.getHigh(), 0, true));
         } else {
 
-            tvContent.setText("" + Utils.formatNumber(e.getVal(), 0, true));
+            tvContent.setText("This point's value is :" + Utils.formatNumber(e.getVal(), 0, true));
         }
     }
 
@@ -51,5 +54,20 @@ public class MyMarkerView extends MarkerView {
     public int getYOffset() {
         // this will cause the marker-view to be above the selected value
         return -getHeight();
+    }
+
+    @Override
+    public void setOutOfRightScreenMarker() {
+        rlMarker.setBackgroundResource(R.drawable.ic_marker_right);
+    }
+
+    @Override
+    public void setOutOfLeftScreenMarker() {
+        rlMarker.setBackgroundResource(R.drawable.ic_marker_left);
+    }
+
+    @Override
+    public void setDefaultScreenMarker() {
+        rlMarker.setBackgroundResource(R.drawable.ic_marker_middle);
     }
 }
